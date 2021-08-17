@@ -7,7 +7,12 @@ from flask import Flask, jsonify
 
 class Blockchain:
 
-    
+    def _init_(self):
+        self.chain = []
+        self.create_block(proof = 1, previous_hash = '0')
+
+    def create_block(self, proof, previous_hash):
+        
 
 #--------------------------------------- Part 2 - Mining our Blockchain
 
