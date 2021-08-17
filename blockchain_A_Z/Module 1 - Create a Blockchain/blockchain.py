@@ -1,5 +1,11 @@
-#------------------------------- Module 1 - Create a Blockchain
+import datetime
+import hashlib
+import json
+from flask import Flask, jsonify
 
-    
-#---------------------------------------- Part 2 - Mining our Blockchain
+#--------------------------------------- Module 1 - Create a Blockchain
+
+
+
+#--------------------------------------- Part 2 - Mining our Blockchain
 
