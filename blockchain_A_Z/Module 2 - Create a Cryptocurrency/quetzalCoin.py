@@ -1,10 +1,13 @@
-#------------------------------- Module 1 - Create a Blockchain
+#------------------------------- Module 2 - Create a Cryptocurrency
 
 # Importing the libraries
 import datetime
 import hashlib
 import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import requests
+from uuid import uuid4
+from urllib.parse import urlparse
 
 # Part 1 - Building a Blockchain
 
@@ -94,6 +97,10 @@ def valid_chain():
     elif blockchain.is_chain_valid(blockchain.chain) == False:
         response = {'message': 'the chain is invalid'}
     return jsonify(response), 200
+
+
+
+#---------------------------------------- Part 3 - Decentralizing our Blockchain
 
 # Running the app
 app.run(host = '0.0.0.0', port = 5000)
