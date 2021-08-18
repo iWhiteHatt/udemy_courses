@@ -12,7 +12,7 @@ class Blockchain:
         self.create_block(proof = 1, previous_hash = '0')
 
     def create_block(self, proof, previous_hash):
-        
+        block = {}
 
 #--------------------------------------- Part 2 - Mining our Blockchain
 
