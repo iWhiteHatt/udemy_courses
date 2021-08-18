@@ -15,13 +15,17 @@ class Blockchain:
     
     def __init__(self):
         self.chain = []
+        self.transactions = []
         self.create_block(proof = 1, previous_hash = '0')
+        self.nodes = set()
         
     def create_block(self, proof, previous_hash):
         block = {'index': len(self.chain) + 1,
                  'timestamp': str(datetime.datetime.now()),
                  'proof': proof,
-                 'previous_hash': previous_hash}
+                 'previous_hash': previous_hash,
+                 'transactions': self.transactions}
+        self.transactions = []
         self.chain.append(block)
         return block
     
@@ -58,7 +62,17 @@ class Blockchain:
             previous_block = block
             block_index += 1
         return True
-    
+
+    def add_transaction(self, sender, receiver, amount):
+        self.transactions.append({'sender': sender,
+                                  'receiver': receiver,
+                                  'amount': amount})
+        previous_block = self.get_previous_block()
+        return previous_block['index'] + 1
+
+    def add_node(self, address):
+        parsed_url = urlparse(address)
+        self.nodes.add(parsed_url.netloc)
 #---------------------------------------- Part 2 - Mining our Blockchain
 
 # Creating a Web App
@@ -75,7 +89,7 @@ def mine_block():
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
     block = blockchain.create_block(proof, previous_hash)
-    response = {'message': 'Congratulations, you just mined a block!', 
+    response = {'message': 'Congratulations, you just mined a block!',
                'index': block['index'],
                'timestamp': block['timestamp'],
                'proof': block['proof'],
@@ -102,6 +116,11 @@ def valid_chain():
 
 #---------------------------------------- Part 3 - Decentralizing our Blockchain
 
-# Running the app
+
+
+
+
+
+#---------------------------------------- Running the app
 app.run(host = '0.0.0.0', port = 5000)
 
